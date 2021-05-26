@@ -1,0 +1,36 @@
+portinfo = {}
+portinfo['FastEthernet1']['speed'] = '100'
+
+portinfo['FastEthernet1'] = {}
+portinfo['FastEthernet1']['speed'] = '100'
+portinfo
+#[Out]# {'FastEthernet1': {'speed': '100'}}
+
+portinfo['FastEthernet2'] = {}
+portinfo['FastEthernet2']['speed'] = '1000'
+portinfo
+#[Out]# {'FastEthernet1': {'speed': '100'}, 'FastEthernet2': {'speed': '1000'}}
+
+class Tree(dict):
+    """ Autovivificious dictionary """
+    def __missing__(self, key):
+        value = self[key] = type(self)()
+        return value
+
+    def __str__(self):
+        """ Serialize dictionary to JSON formatted string with indents """
+        return json.dumps(self, indent=4)
+        
+portinfo = Tree()
+portinfo['FastEthernet2']['speed'] = '1000'
+portinfo['FastEthernet1']['speed'] = '100'
+portinfo
+#[Out]# {'FastEthernet2': {'speed': '1000'}, 'FastEthernet1': {'speed': '100'}}
+
+for port in portinfo:
+    print(port)
+    
+for port, portitems in portinfo.items():
+    for k, v in portitems.items():
+        print('Interface {} has key {} and value {}'.format(port, k, v))
+        

@@ -1,0 +1,80 @@
+# IPython log file
+
+test = ['Hans', 'Willem', 'Chris']
+test
+#[Out]# ['Hans', 'Willem', 'Chris']
+
+test.sort()
+test
+#[Out]# ['Chris', 'Hans', 'Willem']
+test.append('Kiet')
+test
+#[Out]# ['Chris', 'Hans', 'Willem', 'Kiet']
+
+test.sort()
+
+test.remove('Chris')
+test
+#[Out]# ['Hans', 'Kiet', 'Willem']
+
+test1 = [ 'Chris', 'William']
+test.extend(test1)
+test
+
+#[Out]# ['Hans', 'Kiet', 'Willem', 'Chris', 'William']
+test.sort()
+test.reverse()
+test
+
+#[Out]# ['William', 'Willem', 'Kiet', 'Hans', 'Chris']
+test[0]
+#[Out]# 'William'
+test[1]
+#[Out]# 'Willem'
+
+for naam in test:
+    print(naam)
+    
+test = tuple()
+test = ('Hans', 'Pieter')
+test
+#[Out]# ('Hans', 'Pieter')
+
+test.count()
+test.count('Hans')
+#[Out]# 1
+test.index('Hans')
+#[Out]# 0
+test.index('Pieter')
+#[Out]# 1
+
+test = set()
+test.add('Hans', 'Pieter', 'Rolf')
+test.add('Hans')
+test.add('Pieter')
+test.add('Rolf')
+test
+#[Out]# {'Hans', 'Pieter', 'Rolf'}
+test.add('Hans')
+test
+#[Out]# {'Hans', 'Pieter', 'Rolf'}
+
+test1 = set()
+test1.add('Siebe')
+test1.add('Pieter')
+test1.add('William')
+
+test.union(test1)
+#[Out]# {'Hans', 'Pieter', 'Rolf', 'Siebe', 'William'}
+bla = test.union(test1)
+bla
+#[Out]# {'Hans', 'Pieter', 'Rolf', 'Siebe', 'William'}
+test.intersection(test1)
+#[Out]# {'Pieter'}
+
+test.difference(test1)
+#[Out]# {'Hans', 'Rolf'}
+
+test1.difference(test)
+#[Out]# {'Siebe', 'William'}
+

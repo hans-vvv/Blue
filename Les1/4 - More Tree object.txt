@@ -1,0 +1,65 @@
+tree = Tree()
+
+tree['switch1']['port']['Fastethernet1']['duplex'] = 'full'
+tree['switch1']['port']['Fastethernet1']['speed'] = '10'
+tree['switch1']['port']['Fastethernet2']['negotiation'] = 'auto'
+tree['switch2']['port']['Fastethernet1']['speed'] = '100'
+tree
+#[Out]# {'switch1': {'port': {'Fastethernet1': {'duplex': 'full', 'speed': '10'}, 'Fastethernet2': {'negotiation': 'auto'}}, 'vlan': {'2': {'name': 'two'}, '3': {'name': 'three'}}}, 'switch2': {'port': {'Fastethernet1': {'speed': '100'}}, 'vlan': {'2': {'name': 'two'}, '4': {'name': 'four'}}}}
+
+tree['switch1']['vlan']['2']['name'] = 'two'
+tree['switch1']['vlan']['3']['name'] = 'three'
+tree['switch2']['vlan']['2']['name'] = 'two'
+tree['switch2']['vlan']['4']['name'] = 'four'
+tree
+#[Out]# {'switch1': {'port': {'Fastethernet1': {'duplex': 'full', 'speed': '10'}, 'Fastethernet2': {'negotiation': 'auto'}}, 'vlan': {'2': {'name': 'two'}, '3': {'name': 'three'}}}, 'switch2': {'port': {'Fastethernet1': {'speed': '100'}}, 'vlan': {'2': {'name': 'two'}, '4': {'name': 'four'}}}}
+
+import json
+print(tree)
+
+{
+    "switch1": {
+        "port": {
+            "Fastethernet1": {
+                "duplex": "full",
+                "speed": "10"
+            },
+            "Fastethernet2": {
+                "negotiation": "auto"
+            }
+        },
+        "vlan": {
+            "2": {
+                "name": "two"
+            },
+            "3": {
+                "name": "three"
+            }
+        }
+    },
+    "switch2": {
+        "port": {
+            "Fastethernet1": {
+                "speed": "100"
+            }
+        },
+        "vlan": {
+            "2": {
+                "name": "two"
+            },
+            "4": {
+                "name": "four"
+            }
+        }
+    }
+}
+
+for hostname in tree:
+    print(hostname)
+
+for hostname in tree:
+    for port, portitems in tree[hostname]['port'].items():
+        for k, v in portitems.items():
+            print('Interface {} from hostname {} has key {} and value {}'.format(port, hostname, k, v))
+
+

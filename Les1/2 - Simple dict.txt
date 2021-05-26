@@ -1,0 +1,23 @@
+portitems = {}
+portitems['speed'] = '100'
+portitems['switchport mode'] = 'access'
+
+portitems
+#[Out]# {'speed': '100', 'switchport mode': 'access'}
+portitems.pop('switchport mode')
+#[Out]# 'access'
+get_ipython().run_line_magic('pinfo', 'portitems.pop')
+portitems['speed'] 
+#[Out]# '100'
+portitems['switchport mode']
+get_ipython().run_line_magic('pinfo', 'portitems.get')
+portitems.get('switchport mode')
+portitems.get('switchport mode') == None
+#[Out]# True
+portitems['switchport mode'] = 'trunk'
+for key in portitems:
+    print(key)
+   
+   
+for k, v in portitems.items():
+    print('The key is {} and the value is {}'.format(k, v))

@@ -1,0 +1,36 @@
+from collections import defaultdict
+
+vlan_list = defaultdict(list)
+
+vlan_list['switch1'].append('1')
+vlan_list['switch1'].append('2')
+vlan_list['switch1'].append('3')
+vlan_list['switch2'].append('3')
+vlan_list['switch2'].append('4')
+vlan_list['switch2'].append('5')
+vlan_list
+#[Out]# defaultdict(list, {'switch1': ['1', '2', '3'], 'switch2': ['3', '4', '5']})
+for hostname in vlan_list:
+    print('hostname {} has vlans {} configured'.format(hostname, ','.join(vlan_list[hostname])))
+    
+vlan_set = defaultdict(set)
+result = set()
+
+vlan_set['switch1'] = {'1', '2', '3'}
+vlan_set['switch2'] = {'2', '3', '7'}
+vlan_set['switch3'] = {'3', '4', '7'}
+for hostname in vlan_set:
+    if hostname != 'switch2':
+        for vlan in vlan_set[hostname]:
+            result.add(vlan)
+            
+print(result)
+print(sorted(list(result), key=int))
+
+
+for hostname in vlan_set:
+    if hostname == 'switch2':
+        continue
+    result.update(vlan_set[hostname])
+    
+print(sorted(list(result), key=int))
