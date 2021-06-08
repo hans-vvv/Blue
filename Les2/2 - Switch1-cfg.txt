@@ -1,0 +1,20 @@
+hostname Switch1
+!
+interface FastEthernet1
+ description Port1
+ switchport mode access
+ switchport voice vlan 497
+ switchport access vlan 2
+!
+interface FastEthernet2
+ description Port2
+ switchport mode trunk
+ switchport trunk allowed vlan 2
+!
+interface FastEthernet3
+ switchport mode access
+ switchport access vlan 3
+!
+interface FastEthernet4
+ switchport access vlan 3
+!

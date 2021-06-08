@@ -1,0 +1,145 @@
+[
+    {
+        "hostname": "Switch1",
+        "vlan": {
+            "2": {
+                "name": "two"
+            },
+            "3": {
+                "name": "three"
+            },
+            "4": {
+                "name": "four"
+            },
+            "5": {
+                "name": "five"
+            },
+            "6": {
+                "name": "six"
+            },
+            "7": {
+                "name": "seven"
+            },
+            "8": {
+                "name": "eight"
+            }
+        },
+        "port": {
+            "FastEthernet 1": {
+                "description": "Port1",
+                "switchport mode": "access",
+                "switchport access vlan": "2"
+            },
+            "FastEthernet 2": {
+                "description": "Port2",
+                "switchport mode": "trunk",
+                "vlan_allow_list": [
+                    "2",
+                    "3",
+                    "4",
+                    "6",
+                    "7",
+                    "8"
+                ]
+            },
+            "FastEthernet 3": {
+                "switchport mode": "access",
+                "switchport access vlan": "3"
+            },
+            "FastEthernet 4": {
+                "switchport access vlan": "3"
+            }
+        },
+        "global_cfg": [
+            "service tcp-keepalives-in",
+            "service password-encryption",
+            "service compress-config",
+            "hostname Switch1",
+            "!"
+        ],
+        "hierarc_cfgs": [
+            [
+                "ip access-list standard ACL-VTY in",
+                " permit 1.1.1.1"
+            ],
+            [
+                "line vty 0 4",
+                " transport input ssh",
+                " access-class ACL-VTY in",
+                " login local"
+            ]
+        ],
+        "os_type": "ios_xe"
+    },
+    {
+        "hostname": "Switch2",
+        "vlan": {
+            "2": {
+                "name": "two"
+            },
+            "3": {
+                "name": "three"
+            },
+            "4": {
+                "name": "four"
+            },
+            "5": {
+                "name": "five"
+            },
+            "6": {
+                "name": "six"
+            },
+            "7": {
+                "name": "seven"
+            },
+            "8": {
+                "name": "eight"
+            }
+        },
+        "port": {
+            "FastEthernet 1": {
+                "description": "Port1",
+                "switchport mode": "access",
+                "switchport access vlan": "5"
+            },
+            "FastEthernet 2": {
+                "description": "Port2",
+                "switchport mode": "trunk",
+                "vlan_allow_list": [
+                    "2",
+                    "3",
+                    "4",
+                    "6",
+                    "7"
+                ]
+            },
+            "FastEthernet 3": {
+                "switchport mode": "access",
+                "switchport access vlan": "4"
+            },
+            "FastEthernet 4": {
+                "switchport access vlan": "6"
+            }
+        },
+        "global_cfg": [
+            "service tcp-keepalives-in",
+            "service password-encryption",
+            "service compress-config",
+            "hostname Switch2",
+            "!"
+        ],
+        "hierarc_cfgs": [
+            [
+                "ip access-list standard ACL-VTY in",
+                " permit 1.1.1.1"
+            ],
+            [
+                "line vty 0 4",
+                " transport input ssh",
+                " access-class ACL-VTY in",
+                " login local"
+            ]
+        ],
+        "os_type": "ios_xe"
+    }
+]
