@@ -1,0 +1,216 @@
+service tcp-keepalives-in
+service password-encryption
+service compress-config
+!
+hostname Switch1
+!
+vlan 2 
+ name Native
+!
+vlan 3
+ name Voice
+!
+vlan 4
+ name Data-4-Justitie
+!
+vlan 6
+ name Printer-Justitie
+!
+vlan 7
+ name Lstuff-Justitie
+!
+vlan 8
+ name Locker-BuZa
+!
+vlan 1001
+ name Couple-Justitie
+!
+vlan 2001
+ name Couple-BuZa
+!
+vlan 2002
+ name Couple-BiZa
+!
+vlan 2003
+ name Couple-Voice
+!
+vlan 2004
+ name Data-2004-BuZa
+!
+vlan 2005
+ name Data-2005-BuZa
+!
+vlan 2018
+ name Data-2018-BiZa
+!
+vlan 2019
+ name Data-2019-BiZa
+!
+interface FastEthernet1/1
+ description KA
+ switchport mode access
+ switchport access vlan 2
+ switchport voice vlan 3
+ spanning-tree portfast
+!
+interface FastEthernet1/2
+ ddescription KA
+ switchport mode access
+ switchport access vlan 4
+ spanning-tree portfast
+!
+interface FastEthernet1/3
+ description KA
+ switchport mode access
+ switchport access vlan 4
+ switchport voice vlan 3
+ spanning-tree portfast
+!
+interface FastEthernet1/4
+ description KA
+ switchport mode access
+ switchport access vlan 2
+!
+interface FastEthernet1/5
+ description Desktop switch
+ switchport mode trunk
+ switchport trunk allowed vlan 4,2005
+!
+interface FastEthernet1/6
+ description KA
+ switchport mode access
+ switchport access vlan 5
+ switchport voice vlan 3
+ spanning-tree portfast
+!
+interface FastEthernet1/7
+ description KA
+ switchport mode access
+ switchport access vlan 2
+ switchport voice vlan 3
+ spanning-tree portfast
+!
+interface FastEthernet1/8
+ description KA
+ switchport mode access
+ switchport access vlan 2
+ spanning-tree portfast
+!
+interface FastEthernet1/9
+ description KA
+ switchport mode access
+ switchport access vlan 2018
+ switchport voice vlan 3
+ spanning-tree portfast
+!
+interface FastEthernet1/10
+ description KA
+ switchport mode access
+ switchport access vlan 2
+ spanning-tree portfast
+!
+interface FastEthernet1/11
+ description KA
+ switchport mode access
+ switchport access vlan 2
+ spanning-tree portfast
+!
+interface FastEthernet1/12
+ description KA
+ switchport mode access
+ switchport access vlan 4
+ spanning-tree portfast
+!
+interface FastEthernet1/13
+ description KA
+ switchport mode access
+ switchport access vlan 2
+ switchport voice vlan 3
+ spanning-tree portfast
+!
+interface FastEthernet1/14
+ description KA
+ switchport mode access
+ switchport access vlan 5
+ spanning-tree portfast
+!
+interface FastEthernet1/15
+ description KA
+ switchport mode access
+ switchport access vlan 2
+!
+interface FastEthernet1/16
+ description KA
+ switchport mode access
+ switchport access vlan 2
+ spanning-tree portfast
+!
+interface FastEthernet1/17
+ description KA
+ switchport mode access
+ switchport access vlan 2
+ switchport voice vlan 3
+ spanning-tree portfast
+!
+interface FastEthernet1/18
+ description KA
+ switchport mode access
+ switchport access vlan 2
+ spanning-tree portfast
+!
+interface FastEthernet1/19
+ description KA
+ switchport mode access
+ switchport access vlan 5
+ switchport voice vlan 3
+ spanning-tree portfast
+!
+interface FastEthernet1/20
+ description KA
+ switchport mode access
+ switchport access vlan 2
+ spanning-tree portfast
+!
+interface FastEthernet1/21
+ description KA
+ switchport mode access
+ switchport access vlan 2
+ switchport voice vlan 3
+ spanning-tree portfast
+!
+interface FastEthernet1/22
+!
+interface FastEthernet1/23
+ description KA
+ switchport mode access
+ switchport access vlan 2
+ switchport voice vlan 3
+ spanning-tree portfast
+!
+interface FastEthernet1/24
+ description KA
+ switchport mode access
+ switchport access vlan 2
+ spanning-tree portfast
+!
+interface GigaBitEthernet2/1
+ decription Router1 Gi1/1
+ switchport mode trunk
+ switchport nonegotiate
+ switchport trunk allowed vlan 2,3,5,2018,2019
+!
+interface GigaBitEthernet2/2
+ description Router2 Gi1/1
+ switchport mode trunk
+ switchport nonegotiate
+ switchport trunk allowed vlan 2,3,5,2018,2019
+!
+ip access-list standard ACL-VTY in
+ permit 1.1.1.1
+!
+line vty 0 4
+ transport input ssh
+ access-class ACL-VTY in
+ login local
+!
+ 

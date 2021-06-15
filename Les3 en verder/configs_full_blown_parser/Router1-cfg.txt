@@ -1,0 +1,328 @@
+service tcp-keepalives-in
+service compress-config
+!
+username admin priviledge 15 Welkom123!
+!
+hostname Router1
+!
+vlan 2 
+ name Native
+!
+vlan 3
+ name Voice
+!
+vlan 5
+ name Data-5-Justitie
+!
+vlan 6
+ name Printer-Justitie
+!
+vlan 7
+ name Lstuff-Justitie
+!
+vlan 8
+ name Locker-BuZa
+!
+vlan 1001
+ name Couple-Justitie
+!
+vlan 2001
+ name Couple-BuZa
+!
+vlan 2002
+ name Couple-BiZa
+!
+vlan 2003
+ name Couple-Voice
+!
+vlan 2004
+ name Data-2004-BuZa
+!
+vlan 2005
+ name Data-2005-BuZa
+!
+vlan 2018
+ name Data-2018-BiZa
+!
+vlan 2019
+ name Data-2019-BiZa
+!
+ip vrf 1
+ description Justitie
+!
+ip vrf 2
+ description BuZa
+!
+ip vrf 3
+ description BiZa
+!
+ip vrf 4
+ description Voice
+!
+ip vrf 5
+ description Empty
+!
+interface Vlan3
+ description Voice
+ ip vrf forwarding 4
+ ip address 10.0.0.1 255.255.255.0
+ standby 1 ip 10.0.0.254
+ standby 1 priority 254
+ ip helper-address 10.1.0.1
+ ip helper-address 10.1.0.2
+!
+interface Vlan4
+ description Data-4-Justitie
+ ip vrf forwarding 1
+ ip address 192.168.0.1 255.255.255.0
+ standby 1 ip 192.168.0.254
+ standby 1 priority 254
+ ip helper-address 192.168.255.253
+ ip helper-address 192.168.255.254
+!
+interface Vlan5
+ description Data-5-Justitie
+ ip vrf forwarding 1
+ ip address 192.168.1.1 255.255.255.0
+ standby 1 ip 192.168.1.254
+ standby 1 priority 254
+ ip helper-address 192.168.255.253
+ ip helper-address 192.168.255.254
+!
+interface Vlan6
+ description Printer-Justitie
+ ip vrf forwarding 1
+ ip address 192.168.2.1 255.255.255.0
+ standby 1 ip 192.168.2.254
+ standby 1 priority 254
+ ip helper-address 192.168.255.253
+ ip helper-address 192.168.255.254
+!
+interface Vlan7
+ description Lstuff-Justitie
+ ip vrf forwarding 1
+ ip address 192.168.3.1 255.255.255.0
+ standby 1 ip 192.168.3.254
+ standby 1 priority 254
+ ip helper-address 192.168.255.253
+ ip helper-address 192.168.255.254
+!
+interface Vlan8
+ description Locker-BuZa
+ ip vrf forwarding 2
+ ip address 10.100.0.1 255.255.255.0
+ standby 1 ip 10.100.0.254
+ standby 1 priority 254
+!
+interface Vlan1001
+ description Couple-Justitie
+ ip vrf forwarding 1
+ ip address 192.168.100.2 255.255.255.248
+ standby 1 ip 192.168.100.6
+ standby 1 priority 254
+!
+interface Vlan2001
+ description Couple-BuZa
+ ip vrf forwarding 2
+ ip address 10.100.1.1 255.255.255.248
+ standby 1 ip 10.100.1.6
+ standby 1 priority 254
+!
+interface Vlan2002
+ description Couple-BiZa
+ ip vrf forwarding 3
+ ip address 172.16.0.1 255.255.255.248
+ standby 1 ip 172.16.0.6
+ standby 1 priority 254
+!
+interface Vlan2003
+ description Couple-Voice
+ ip vrf forwarding 4
+ ip address 192.168.100.2 255.255.255.248
+ standby 1 ip 192.168.100.6
+ standby 1 priority 254
+!
+interface Vlan2004
+ description Data-2004-BuZa
+ ip vrf forwarding 2
+ ip address 10.100.2.1 255.255.255.0
+ standby 1 ip 10.100.2.254
+ standby 1 priority 254
+ ip helper-address 10.100.254.253
+ ip helper-address 10.100.254.254
+!
+interface Vlan2005
+ description Data-2005-BuZa
+ ip vrf forwarding 2
+ ip address 10.100.3.1 255.255.255.0
+ standby 1 ip 10.100.3.254
+ standby 1 priority 254
+ ip helper-address 10.100.254.253
+ ip helper-address 10.100.254.254
+!
+interface Vlan2018
+ description Data-2018-BiZa
+ ip vrf forwarding 3
+ ip address 172.16.1.1 255.255.255.0
+ standby 1 ip 172.16.1.254
+ standby 1 priority 254
+ ip helper-address 172.16.255.253
+ ip helper-address 172.16.255.254
+!
+interface Vlan2019
+ description Data-2019-BiZa
+ ip vrf forwarding 3
+ ip address 172.16.2.1 255.255.255.0
+ standby 1 ip 172.16.2.254
+ standby 1 priority 100
+ ip helper-address 172.16.255.253
+ ip helper-address 172.16.255.254
+!
+interface GigaBitEthernet1/1
+ description Switch1 Gi2/1
+ switchport mode trunk
+ switchport trunk nonegotiate
+ switchport trunk allowed vlan 2,3,5,2018,2019
+!
+interface GigaBitEthernet1/2
+ description Switch2 Gi2/1
+ switchport mode trunk
+ switchport trunk nonegotiate
+ switchport trunk allowed vlan 2,3,5,2018,2019
+!
+interface GigaBitEthernet1/3
+ description Router2 Gi1/3
+ switchport mode trunk
+ switchport trunk nonegotiate
+!
+interface GigaBitEthernet1/4
+ description Router2 Gi1/4
+ switchport mode trunk
+ switchport trunk nonegotiate
+!
+interface GigaBitEthernet1/5
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/6
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/7
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/8
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/9
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/10
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/11
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/12
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/13
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/14
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/15
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/16
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/17
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/18
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/19
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/20
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/21
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/22
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/23
+ no switchport
+ shutdown
+!
+interface GigaBitEthernet1/24
+ description Provider LineID 1234
+ switchport mode trunk
+ switchport trunk nonegotiate
+ switchport trunk allowed vlan 1001,2001,2002,2003
+ no cdp enable
+ no lldp transmit
+ no lldp receive
+ spanning-tree portfast trunk
+ spanning-tree bpdufilter enable
+!
+interface GigaBitEthernet2/1
+ switchport mode access
+ switchport access vlan 4
+ switchport voice vlan 3
+ spanning-tree portfast
+!
+interface GigaBitEthernet2/2
+ switchport mode access
+ switchport access vlan 4
+ switchport voice vlan 3
+ spanning-tree portfast
+!
+interface GigaBitEthernet2/3
+ switchport mode access
+ switchport access vlan 4
+!
+interface GigaBitEthernet2/4
+ switchport mode access
+ switchport access vlan 4
+ switchport voice vlan 3
+ spanning-tree portfast
+!
+interface GigaBitEthernet2/5
+!
+interface GigaBitEthernet2/6
+!
+interface GigaBitEthernet2/7
+!
+interface GigaBitEthernet2/8
+!
+ip access-list standard ACL-VTY in
+ permit 1.1.1.1
+!
+line vty 0 4
+ transport input ssh
+ access-class ACL-VTY in
+ login local
+!
+ 

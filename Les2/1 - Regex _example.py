@@ -1,12 +1,12 @@
 import re
 
-string = 'switchport mode access'
-match = re.search(r'switchport mode (\w+)', string)
-if match:
-    value = format(match.group(1))
-    
-print(value)
-
+##string = 'switchport mode access'
+##match = re.search(r'switchport mode (\w+)', string)
+##if match:
+##    value = format(match.group(1))
+##    
+##print(value)
+##
 class ReSearcher(object):
     match = None
 
@@ -19,7 +19,7 @@ class ReSearcher(object):
         
 match = ReSearcher()
 
-string = 'switchport mode access'
+string = 'switchport mode trunk'
 if match(r'switchport mode (\w+)', string):
     value = format(match.group(1))
     
