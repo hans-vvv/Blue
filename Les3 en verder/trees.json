@@ -271,79 +271,79 @@
                 "switchport trunk": "nonegotiate"
             },
             "GigaBitEthernet1/5": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/6": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/7": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/8": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/9": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/10": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/11": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/12": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/13": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/14": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/15": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/16": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/17": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/18": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/19": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/20": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/21": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/22": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/23": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/24": {
@@ -356,9 +356,9 @@
                     "2002",
                     "2003"
                 ],
-                "cdp enable": " no cdp enable",
-                "lldp transmit": " no lldp transmit",
-                "lldp receive": " no lldp receive",
+                "cdp enable": "no cdp enable",
+                "lldp transmit": "no lldp transmit",
+                "lldp receive": "no lldp receive",
                 "spanning-tree portfast": "trunk",
                 "spanning-tree bpdufilter": "enable"
             },
@@ -702,79 +702,79 @@
                 "switchport trunk": "nonegotiate"
             },
             "GigaBitEthernet1/5": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/6": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/7": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/8": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/9": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/10": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/11": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/12": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/13": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/14": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/15": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/16": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/17": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/18": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/19": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/20": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/21": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/22": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/23": {
-                "switchport": " no switchport",
+                "switchport": "no switchport",
                 "shutdown": "shutdown"
             },
             "GigaBitEthernet1/24": {
@@ -787,9 +787,9 @@
                     "2002",
                     "2003"
                 ],
-                "cdp enable": " no cdp enable",
-                "lldp transmit": " no lldp transmit",
-                "lldp receive": " no lldp receive",
+                "cdp enable": "no cdp enable",
+                "lldp transmit": "no lldp transmit",
+                "lldp receive": "no lldp receive",
                 "spanning-tree portfast": "trunk",
                 "spanning-tree bpdufilter": "enable"
             },

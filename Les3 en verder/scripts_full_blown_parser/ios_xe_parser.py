@@ -62,7 +62,7 @@ def ios_xe_parser(configfile):
 
                 if match(r'^ no (.*)', line):
                     key = format(match.group(1))
-                    value = format(match.group(0))
+                    value = format(match.group(0)).lstrip()
                     tree['port'][portindex][key] = value
 
                 # interface items are stored with helper class
