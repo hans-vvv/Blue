@@ -181,24 +181,24 @@ interface Vlan2019
 interface GigaBitEthernet1/1
  description Switch1 Gi2/2
  switchport mode trunk
- switchport trunk nonegotiate
+ switchport nonegotiate
  switchport trunk allowed vlan 2,3,5,2018,2019
 !
 interface GigaBitEthernet1/2
  description Switch2 Gi2/2
  switchport mode trunk
- switchport trunk nonegotiate
+ switchport nonegotiate
  switchport trunk allowed vlan 2,3,5,2018,2019
 !
 interface GigaBitEthernet1/3
  description Router2 Gi1/3
  switchport mode trunk
- switchport trunk nonegotiate
+ switchport nonegotiate
 !
 interface GigaBitEthernet1/4
  description Router2 Gi1/4
  switchport mode trunk
- switchport trunk nonegotiate
+ switchport nonegotiate
 !
 interface GigaBitEthernet1/5
  no switchport
@@ -279,7 +279,7 @@ interface GigaBitEthernet1/23
 interface GigaBitEthernet1/24
  description Provider LineID 5678
  switchport mode trunk
- switchport trunk nonegotiate
+ switchport nonegotiate
  switchport trunk allowed vlan 1001,2001,2002,2003
  no cdp enable
  no lldp transmit

@@ -251,7 +251,7 @@
             "GigaBitEthernet1/2": {
                 "description": "Switch2 Gi2/1",
                 "switchport mode": "trunk",
-                "switchport trunk": "nonegotiate",
+                "switchport": "nonegotiate",
                 "vlan_allow_list": [
                     "2",
                     "3",
@@ -263,12 +263,12 @@
             "GigaBitEthernet1/3": {
                 "description": "Router2 Gi1/3",
                 "switchport mode": "trunk",
-                "switchport trunk": "nonegotiate"
+                "switchport": "nonegotiate"
             },
             "GigaBitEthernet1/4": {
                 "description": "Router2 Gi1/4",
                 "switchport mode": "trunk",
-                "switchport trunk": "nonegotiate"
+                "switchport": "nonegotiate"
             },
             "GigaBitEthernet1/5": {
                 "switchport": "no switchport",
@@ -349,7 +349,7 @@
             "GigaBitEthernet1/24": {
                 "description": "Provider LineID 1234",
                 "switchport mode": "trunk",
-                "switchport trunk": "nonegotiate",
+                "switchport": "nonegotiate",
                 "vlan_allow_list": [
                     "1001",
                     "2001",
@@ -670,7 +670,7 @@
             "GigaBitEthernet1/1": {
                 "description": "Switch1 Gi2/2",
                 "switchport mode": "trunk",
-                "switchport trunk": "nonegotiate",
+                "switchport": "nonegotiate",
                 "vlan_allow_list": [
                     "2",
                     "3",
@@ -682,7 +682,7 @@
             "GigaBitEthernet1/2": {
                 "description": "Switch2 Gi2/2",
                 "switchport mode": "trunk",
-                "switchport trunk": "nonegotiate",
+                "switchport": "nonegotiate",
                 "vlan_allow_list": [
                     "2",
                     "3",
@@ -694,12 +694,12 @@
             "GigaBitEthernet1/3": {
                 "description": "Router2 Gi1/3",
                 "switchport mode": "trunk",
-                "switchport trunk": "nonegotiate"
+                "switchport": "nonegotiate"
             },
             "GigaBitEthernet1/4": {
                 "description": "Router2 Gi1/4",
                 "switchport mode": "trunk",
-                "switchport trunk": "nonegotiate"
+                "switchport": "nonegotiate"
             },
             "GigaBitEthernet1/5": {
                 "switchport": "no switchport",
@@ -780,7 +780,7 @@
             "GigaBitEthernet1/24": {
                 "description": "Provider LineID 5678",
                 "switchport mode": "trunk",
-                "switchport trunk": "nonegotiate",
+                "switchport": "nonegotiate",
                 "vlan_allow_list": [
                     "1001",
                     "2001",
