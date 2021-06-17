@@ -239,7 +239,7 @@
             "GigaBitEthernet1/1": {
                 "description": "Switch1 Gi2/1",
                 "switchport mode": "trunk",
-                "switchport trunk": "nonegotiate",
+                "switchport": "nonegotiate",
                 "vlan_allow_list": [
                     "2",
                     "3",

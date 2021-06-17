@@ -181,7 +181,7 @@ interface Vlan2019
 interface GigaBitEthernet1/1
  description Switch1 Gi2/1
  switchport mode trunk
- switchport trunk nonegotiate
+ switchport nonegotiate
  switchport trunk allowed vlan 2,3,5,2018,2019
 !
 interface GigaBitEthernet1/2
