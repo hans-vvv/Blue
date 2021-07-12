@@ -382,7 +382,8 @@
                 "switchport mode": "access",
                 "switchport access vlan": "4",
                 "switchport voice vlan": "3",
-                "spanning-tree portfast": "spanning-tree portfast"
+                "spanning-tree portfast": "spanning-tree portfast",
+                "service-policy input": "PM-mark"
             },
             "GigaBitEthernet2/5": {},
             "GigaBitEthernet2/6": {},
@@ -394,7 +395,9 @@
             "service compress-config",
             "username admin priviledge 15 Welkom123!",
             "hostname Router1",
-            "!"
+            "!",
+            "access-list 100 permit tcp any any",
+            "access-list 101 permit udp any any"
         ],
         "hierarc_cfgs": [
             [
@@ -426,6 +429,21 @@
                 " transport input ssh",
                 " access-class ACL-VTY in",
                 " login local"
+            ],
+            [
+                "policy-map PM-mark",
+                " class class1",
+                "  set dscp ef",
+                " class class2",
+                "  set dscp cs4"
+            ],
+            [
+                "class-map class1",
+                " match access-group 101"
+            ],
+            [
+                "class-map class2",
+                " match access-group 102"
             ]
         ],
         "os_type": "ios_xe"
@@ -485,7 +503,7 @@
                 ],
                 "standby": [
                     "1 ip 10.0.0.254",
-                    "1 priority 254"
+                    "1 priority 100"
                 ],
                 "ip helper-address": [
                     "10.1.0.1",
@@ -500,7 +518,7 @@
                 ],
                 "standby": [
                     "1 ip 192.168.0.254",
-                    "1 priority 254"
+                    "1 priority 100"
                 ],
                 "ip helper-address": [
                     "192.168.255.253",
@@ -515,7 +533,7 @@
                 ],
                 "standby": [
                     "1 ip 192.168.1.254",
-                    "1 priority 254"
+                    "1 priority 100"
                 ],
                 "ip helper-address": [
                     "192.168.255.253",
@@ -530,7 +548,7 @@
                 ],
                 "standby": [
                     "1 ip 192.168.2.254",
-                    "1 priority 254"
+                    "1 priority 100"
                 ],
                 "ip helper-address": [
                     "192.168.255.253",
@@ -545,7 +563,7 @@
                 ],
                 "standby": [
                     "1 ip 192.168.3.254",
-                    "1 priority 254"
+                    "1 priority 100"
                 ],
                 "ip helper-address": [
                     "192.168.255.253",
@@ -560,7 +578,7 @@
                 ],
                 "standby": [
                     "1 ip 10.100.0.254",
-                    "1 priority 254"
+                    "1 priority 100"
                 ]
             },
             "Vlan1001": {
@@ -571,7 +589,7 @@
                 ],
                 "standby": [
                     "1 ip 192.168.100.6",
-                    "1 priority 254"
+                    "1 priority 100"
                 ]
             },
             "Vlan2001": {
@@ -582,7 +600,7 @@
                 ],
                 "standby": [
                     "1 ip 10.100.1.6",
-                    "1 priority 254"
+                    "1 priority 100"
                 ]
             },
             "Vlan2002": {
@@ -593,7 +611,7 @@
                 ],
                 "standby": [
                     "1 ip 172.16.0.6",
-                    "1 priority 254"
+                    "1 priority 100"
                 ]
             },
             "Vlan2003": {
@@ -604,7 +622,7 @@
                 ],
                 "standby": [
                     "1 ip 192.168.100.6",
-                    "1 priority 254"
+                    "1 priority 100"
                 ]
             },
             "Vlan2004": {
@@ -615,7 +633,7 @@
                 ],
                 "standby": [
                     "1 ip 10.100.2.254",
-                    "1 priority 254"
+                    "1 priority 100"
                 ],
                 "ip helper-address": [
                     "10.100.254.253",
@@ -630,7 +648,7 @@
                 ],
                 "standby": [
                     "1 ip 10.100.3.254",
-                    "1 priority 254"
+                    "1 priority 100"
                 ],
                 "ip helper-address": [
                     "10.100.254.253",
@@ -645,7 +663,7 @@
                 ],
                 "standby": [
                     "1 ip 172.16.1.254",
-                    "1 priority 254"
+                    "1 priority 100"
                 ],
                 "ip helper-address": [
                     "172.16.255.253",

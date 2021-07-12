@@ -308,6 +308,7 @@ interface GigaBitEthernet2/4
  switchport access vlan 4
  switchport voice vlan 3
  spanning-tree portfast
+ service-policy input PM-mark
 !
 interface GigaBitEthernet2/5
 !
@@ -325,4 +326,18 @@ line vty 0 4
  access-class ACL-VTY in
  login local
 !
- 
+policy-map PM-mark
+ class class1
+  set dscp ef
+ class class2
+  set dscp cs4
+!
+class-map class1
+ match access-group 101
+!
+class-map class2
+ match access-group 102
+!
+access-list 100 permit tcp any any
+access-list 101 permit udp any any
+

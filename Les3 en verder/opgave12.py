@@ -26,13 +26,13 @@
 ## interfaces matches you can determine if the priorities matches the design
 ## rules. Time for an example:
 
-port_hrsp_prio_router1 = {'Vlan3': '254', 'Vlan4': '100'}
-port_hrsp_prio_router2 = {'Vlan3': '100', 'Vlan4': '254'}
+port_hsrp_prio_router1 = {'Vlan3': '254', 'Vlan4': '100'}
+port_hsrp_prio_router2 = {'Vlan3': '100', 'Vlan4': '254'}
 
-for port1 in port_hrsp_prio_router1: # shortcut, I Don't use keys() method here
-    for port2 in port_hrsp_prio_router2:
+for port1 in port_hsrp_prio_router1: # shortcut, I Don't use keys() method here
+    for port2 in port_hsrp_prio_router2:
         if port1 == port2:
-            if int(hrsp_prio_router1[port1]) <= int(hrsp_prio_router2[port2]):
+            if int(port_hsrp_prio_router1[port1]) <= int(port_hsrp_prio_router2[port2]):
                 print('Design validation detected on port {}'.format(port1))
 
 
