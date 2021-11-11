@@ -1,0 +1,142 @@
+---
+- hosts: ios
+  tasks:
+
+  - name: ping switch from ansible host
+    shell: ping -c 3 "{{ansible_host}}"
+    delegate_to: localhost
+    register: output
+    ignore_errors: yes
+
+  - name: Capture ping result
+    set_fact:
+      ping_result: "{{ output.stdout | regex_search('100% packet loss', multiline=True) }}"
+
+  - name: Execute rest of playbook when switch is reachable
+    block:
+
+    - name: Store management IP address into variable
+      set_fact:
+        mgmt_ip_var: "{{hostvars[inventory_hostname]['ansible_host']}}"
+
+    - name: Query IP interface table
+      ansible.netcommon.cli_parse:
+        command: "show ip int brief"
+        parser:
+          name: ansible.netcommon.ntc_templates
+      register: raw_ip_intf_table
+
+    - name: Store parsed IP interface table into dict
+      set_fact:
+        ip_intf_table: "{{ ip_intf_table | default( {'result': raw_ip_intf_table['parsed']} ) }}"
+
+    - name: Query management interface with parsed data
+      set_fact:
+        mgmt_intf: "{{ ip_intf_table | json_query(query) | first }}"
+      vars:
+        query: "result[?ipaddr=='{{mgmt_ip_var}}'].intf"
+
+    - name: Query config from mgmt interface
+      ios_command:
+        commands:
+        - "show run interface {{mgmt_intf}}"
+      register: output
+
+    - name: Find out if management interface is a VRF member
+      set_fact:
+        raw_vrf_member: "{{ output.stdout[0] | regex_search('vrf forwarding') }}"
+
+    - name: Query line vty 0 4 config
+      ios_command:
+        commands:
+        - "show run | section line vty 0 4"
+      register: output
+
+    - name: Find name of VTY ACL on line vty 0 4, if any
+      set_fact:
+        raw_vty_acl_name: "{{ output.stdout[0] | regex_search('access-class ([A-Za-z-_]+) in', '\\1') }}"
+
+    - name: Deconfigure access-class from line 0 4 if access-class exists
+      ios_config:
+        parents:
+        - "line vty 0 4"
+        lines:
+        - "no access-class {{ raw_vty_acl_name | first }} in"
+      when: raw_vty_acl_name != ""
+
+    - name: Query line vty 5 15 config
+      ios_command:
+        commands:
+        - "show run | section line vty 5 15"
+      register: output
+
+    - name: Find name of VTY ACL on line 5 15, if any
+      set_fact:
+        raw_vty_acl_name: "{{ output.stdout[0] | regex_search('access-class ([A-Za-z-_]+) in', '\\1') }}"
+
+    - name: Deconfigure access-class from  line 5 15 if access-class exists
+      ios_config:
+        parents:
+        - "line vty 5 15"
+        lines:
+        - "no access-class {{ raw_vty_acl_name | first }} in"
+      when: raw_vty_acl_name != ""
+
+    - name: Determine if IP access-list ACL-VTY is present
+      ios_command:
+        commands:
+        - "show run | include ip access-list standard ACL-VTY"
+      register: output
+
+    - name: Deconfigure access-list ACL-VTY if it exists
+      ios_config:
+        commands:
+        - "no ip access-list standard ACL-VTY"
+      when: output.stdout[0] != ""
+
+    - name: Configure IP access-list ACL-VTY
+      ios_config:
+        parents:
+        - "ip access-list standard ACL-VTY"
+        lines:
+        - remark permit access from these sources
+        - permit 192.168.57.0 0.0.0.255
+        - permit 1.1.1.0 0.0.0.255
+
+    - name: Configure access-class ACL-VTY on line vty 0 4 when MGMT port is not member of a VRF
+      ios_config:
+        parents:
+        - "line vty 0 4"
+        lines:
+        - "access-class ACL-VTY in"
+      when: raw_vrf_member == ""
+
+    - name: Configure access-class ACL-VTY on line vty 0 4 when MGMT port is not member of a VRF
+      ios_config:
+        parents:
+        - "line vty 5 15"
+        lines:
+        - "access-class ACL-VTY in"
+      when: raw_vrf_member == ""
+
+    - name: Configure access-class ACL-VTY on line vty 5 15 when MGMT port is member of a VRF
+      ios_config:
+        parents:
+        - "line vty 0 4"
+        lines:
+        - "access-class ACL-VTY in vrf-also"
+      when: raw_vrf_member != ""
+
+    - name: Configure access-class ACL-VTY on line vty 5 15 when MGMT port is member of a VRF
+      ios_config:
+        parents:
+        - "line vty 5 15"
+        lines:
+        - "access-class ACL-VTY in vrf-also"
+      when: raw_vrf_member != ""
+
+    - name: Gather facts to verify that switch is still manageable
+      ios_facts:
+        gather_subset: min
+
+    when: ping_result == ""

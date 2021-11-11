@@ -1,0 +1,4 @@
+[nxos]
+N7K ansible_host=192.168.57.5
+[ios]
+sw101 ansible_host=192.168.57.3

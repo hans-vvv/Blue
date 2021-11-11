@@ -1,0 +1,4 @@
+---
+ansible_network_os: nxos
+ansible_user: cisco
+ansible_ssh_pass: cisco

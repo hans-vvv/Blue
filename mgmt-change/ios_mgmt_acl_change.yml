@@ -1,0 +1,90 @@
+---
+- hosts: ios
+  tasks:
+
+  - name: ping switch from ansible host
+    shell: ping -c 3 "{{ansible_host}}"
+    delegate_to: localhost
+    register: output
+    ignore_errors: yes
+
+  - name: Capture ping result
+    set_fact:
+      ping_result: "{{ output.stdout | regex_search('100% packet loss') }}"
+
+  - name: Execute rest of playbook only when switch is reachable
+    block:
+
+    - name: Store management IP address into variable
+      set_fact:
+        mgmt_ip_var: "{{hostvars[inventory_hostname]['ansible_host']}}"
+
+    - name: Query IP interface table
+      ansible.netcommon.cli_parse:
+        command: "show ip int brief"
+        parser:
+          name: ansible.netcommon.ntc_templates
+      register: raw_ip_intf_table
+
+    - name: Store parsed IP interface table into dict
+      set_fact:
+        ip_intf_table: "{{ ip_intf_table | default( {'result': raw_ip_intf_table['parsed']} ) }}"
+
+    - name: Query management interface from parsed data
+      set_fact:
+        mgmt_intf: "{{ ip_intf_table | json_query(query) | first }}"
+      vars:
+        query: "result[?ipaddr=='{{mgmt_ip_var}}'].intf"
+
+    - name: Query config from mgmt interface
+      ios_command:
+        commands:
+        - "show run interface {{mgmt_intf}}"
+      register: output
+
+    - name: Find out if management ACL is present on management interface
+      set_fact:
+        raw_mgmt_acc_gr: "{{ output.stdout[0] | regex_search('ip access-group') }}"
+
+    - name: Deconfigure access-group from management interface if present
+      ios_config:
+        parents:
+        - "interface {{mgmt_intf}}"
+        lines:
+        - "no ip access-group ACL-MANAGEMENT in"
+      when: raw_mgmt_acc_gr != ""
+
+    - name: Query if management access-list is present
+      ios_command:
+        commands:
+        - "show access-list ACL-MANAGEMENT"
+      register: output
+
+    - name: Deconfigure management ACL if it is present
+      ios_config:
+        commands:
+        - "no ip access-list extended ACL-MANAGEMENT"
+      when: "'Extended IP access list ACL-MANAGEMENT' in output.stdout_lines[0]"
+
+    - name: Reconfigure management ACL if it was present
+      ios_config:
+        parents: 
+        - "ip access-list extended ACL-MANAGEMENT"
+        lines:
+        - permit ip 1.1.1.0 0.0.0.255 any
+        - permit ip any any
+      when: "'Extended IP access list ACL-MANAGEMENT' in output.stdout_lines[0]"
+
+    - name: Apply management ACL to management port if it was present before
+      ios_config:
+        parents:
+        - "interface {{mgmt_intf}}"
+        lines:
+        - ip access-group ACL-MANAGEMENT in
+      when: raw_mgmt_acc_gr != ""
+
+    - name: Gather facts to verify that switch is still manageable
+      ios_facts:
+        gather_subset: min
+
+    when: ping_result == ""

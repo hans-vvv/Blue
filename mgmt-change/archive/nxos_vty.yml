@@ -1,0 +1,81 @@
+---
+- hosts: nxos
+  tasks:
+
+  - name: ping switch from ansible host
+    shell: ping -c 3 "{{ansible_host}}"
+    delegate_to: localhost
+    register: output
+    ignore_errors: yes
+
+  - name: Capture ping result
+    set_fact:
+      ping_result: "{{ output.stdout | regex_search('100% packet loss', multiline=True) }}"
+
+  - name: Execute rest of playbook when switch is reachable
+    block:
+
+    - name: Query VTY config
+      nxos_command:
+        commands:
+        - "show run | section 'line vty'"
+      register: output
+
+    - name: Find name of VTY ACL, if any
+      set_fact:
+        raw_vty_acl_name: "{{ output.stdout[0] | regex_search('access-class ([A-Za-z-_]+) in', '\\1') }}"
+
+    - name: Deconfigure access-class from VTY line if it exists
+      nxos_config:
+        parents:
+        - "line vty"
+        lines:
+        - "no access-class {{ raw_vty_acl_name | first }} in"
+      when: raw_vty_acl_name != ""
+
+    - name: Determine if IP access-list ACL_VTY is present
+      nxos_command:
+        commands:
+        - "show run | include 'ip access-list ACL_VTY'"
+      register: output
+
+    - name: Deconfigure access-list ACL_VTY if it exists
+      nxos_config:
+        commands:
+        - "no ip access-list ACL_VTY"
+      when: output.stdout[0] != ""
+
+    - name: Determine if IP access-list ACL-VTY is present
+      nxos_command:
+        commands:
+        - "show run | include 'ip access-list ACL-VTY'"
+      register: output
+
+    - name: Deconfigure access-list ACL-VTY if it exists
+      nxos_config:
+        commands:
+        - "no ip access-list ACL-VTY"
+      when: output.stdout[0] != ""
+
+    - name: Configure IP access-list ACL-VTY if host is up
+      nxos_config:
+        parents:
+        - "ip access-list ACL-VTY"
+        lines:
+        - statistics per-entry
+        - 10 remark permit access from these sources
+        - 20 permit ip 192.168.57.0/24 any
+        - 30 permit ip 1.1.1.0/24 any
+
+    - name: Configure access-class ACL-VTY on VTY line
+      nxos_config:
+        parents:
+        - "line vty"
+        lines:
+        - "access-class ACL-VTY in"
+
+    - name: Gather facts to verify that switch is still manageable
+      nxos_facts:
+        gather_subset: min
+
+    when: ping_result == ""

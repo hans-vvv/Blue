@@ -1,0 +1,33 @@
+---
+- hosts: all
+  tasks:
+  - name: Gather Facts
+    ios_facts:
+      gather_subset: all 
+    register: output
+
+  - name: Store management IP address into variable
+    set_fact:
+      mgmt_ip_var: "{{hostvars[inventory_hostname]['ansible_host']}}"
+
+  - name: Query route table
+    ansible.netcommon.cli_parse:
+      command: "show ip route"
+      parser:
+        name: ansible.netcommon.ntc_templates
+    register: route_table
+
+  - name: Store route table into variable
+    set_fact:
+      route_table_var: "{{route_table['parsed']}}"
+
+  - debug: var=route_table_var
+
+  - name: Find management interface
+    findmgmtport:
+      mgmt_ip: "{{mgmt_ip_var}}"
+      route_table: "{{route_table_var}}"
+    register: mgmt_interface
+
+  - debug: var=mgmt_interface
+
