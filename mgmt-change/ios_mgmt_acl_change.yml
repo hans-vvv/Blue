@@ -2,6 +2,20 @@
 - hosts: ios
   tasks:
 
+  - name: Read JSON status file
+    delegate_to: localhost
+    run_once: true
+    shell: cat ~/scripts/mgmt-change/status/hosts_done.json
+    register: result
+
+  - name: Save JSON file as fact
+    set_fact:
+      hosts_done: "{{ result.stdout | from_json  }}"
+
+  - name: Save hostname into variable
+    set_fact:
+      hostname: "{{ inventory_hostname }}"
+
   - name: ping switch from ansible host
     shell: ping -c 3 "{{ansible_host}}"
     delegate_to: localhost
@@ -86,5 +100,16 @@
     - name: Gather facts to verify that switch is still manageable
       ios_facts:
         gather_subset: min
+
+    - name: Dump hostname into file
+      copy:
+        content: "{{hostname}}"
+        dest: "~/scripts/mgmt-change/status/{{inventory_hostname}}.txt"
+      delegate_to: localhost
+
+    - name: Invoke Python script to update the hosts being done
+      shell: python3 status.py
+      delegate_to: localhost
+      run_once: true
 
     when: ping_result == ""
