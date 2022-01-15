@@ -1,0 +1,25 @@
+{% if vrf == 'global' %}
+interface {{interface}}
+ ip address {{vlan_ip_plus_mask}}
+{% else %}
+interface {{interface}}
+ ip address {{vlan_ip_plus_mask}}
+{% endif %}
+{% if description %}
+ description {{description}}
+{% endif %}
+{% if vrf != 'global' %}
+ ip vrf forwarding {{vrf}}
+{% endif %}
+{% if hsrp_address %}
+ standby {{hsrp_address}}
+{% endif %}
+{% if hsrp_state%}
+ standby {{hsrp_state}}
+{% endif %}
+{% if helpers %}
+{% for helper in helpers %}
+ ip helper-address {{helper}}
+{% endfor %}
+{% endif %}
+!

@@ -1,0 +1,22 @@
+{% macro create_table(result) %}
+<table class="table">
+    <thead class="bg-steel">
+    <tr>
+	{% for row in result %}
+	  {% if loop.index == 1 %}  
+            {% for col_header in row %}
+            <th scope="col" id="colheader">{{col_header}}</th>
+            {% endfor %}
+	  {% endif %}
+	{% endfor %}
+    </tr>
+    </thead>
+    {% for row in result %}
+    <tr>
+        {% for value in row.values() %}
+        <td>{{ value }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endmacro %}

@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  tasks:
+
+  - name: Reset inventory
+    copy:
+      src: ./hosts.start
+      dest: hosts
+
+  - meta: refresh_inventory

@@ -1,0 +1,6 @@
+[final]
+r101 ansible_host=192.168.57.1
+r102 ansible_host=192.168.57.2
+sw101 ansible_host=192.168.57.3
+sw102 ansible_host=192.168.57.4
+

@@ -1,0 +1,3 @@
+snmp-server location aaa
+username production privilege 15 password production
+

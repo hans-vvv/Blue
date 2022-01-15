@@ -1,0 +1,8 @@
+---
+- hosts: pre_staging
+
+  tasks:
+
+  - name: Push initial configs to preconfigured switches
+    cisco.ios.ios_config:
+      src: "../lcm_configs/{{inventory_hostname}}-initial.txt"

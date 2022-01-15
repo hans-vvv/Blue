@@ -1,0 +1,390 @@
+[
+    {
+        "hostname": "r1",
+        "vlan": {
+            "99": {
+                "name": "mgmt"
+            },
+            "100": {
+                "name": "user_100"
+            },
+            "497": {
+                "name": "bvt_497"
+            }
+        },
+        "port": {
+            "GigabitEthernet0/0": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet0/1": {
+                "shutdown": "shutdown",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet0/2": {
+                "shutdown": "shutdown",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet0/3": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/0": {
+                "switchport trunk encapsulation": "dot1q",
+                "switchport mode": "trunk",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/1": {
+                "switchport trunk encapsulation": "dot1q",
+                "switchport mode": "trunk",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/2": {
+                "switchport trunk encapsulation": "dot1q",
+                "switchport mode": "trunk",
+                "shutdown": "shutdown",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/3": {
+                "switchport": "no switchport",
+                "ip vrf forwarding": "MGMT",
+                "ip address": "192.168.57.1 255.255.255.240",
+                "negotiation": "auto",
+                "cdp enable": "no cdp enable"
+            },
+            "GigabitEthernet2/0": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet2/1": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet2/2": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet2/3": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "Vlan99": {
+                "ip address": "192.168.57.1 255.255.255.240"
+            },
+            "Vlan100": {
+                "ip vrf forwarding": "POL",
+                "ip address": "100.100.100.1 255.255.255.0",
+                "ip helper-address": [
+                    "3.3.3.3",
+                    "4.4.4.4"
+                ],
+                "standby": [
+                    "1 ip 100.100.100.254",
+                    "1 priority 254"
+                ]
+            },
+            "Vlan497": {
+                "ip vrf forwarding": "POL",
+                "ip address": "47.47.47.1 255.255.255.0",
+                "ip helper-address": [
+                    "5.5.5.5"
+                ],
+                "standby": [
+                    "1 ip 47.47.47.254",
+                    "1 priority 254"
+                ]
+            }
+        }
+    },
+    {
+        "hostname": "sw1",
+        "vlan": {
+            "99": {
+                "name": "mgmt"
+            },
+            "100": {
+                "name": "user_100"
+            },
+            "497": {}
+        },
+        "port": {
+            "GigabitEthernet0/0": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet0/1": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet0/2": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet0/3": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/0": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/1": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/2": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/3": {
+                "switchport": "no switchport",
+                "ip vrf forwarding": "MGMT",
+                "ip address": "192.168.57.3 255.255.255.240",
+                "negotiation": "auto",
+                "cdp enable": "no cdp enable"
+            },
+            "GigabitEthernet2/0": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet2/1": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet2/2": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet2/3": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "Vlan99": {
+                "ip address": "192.168.57.3 255.255.255.240"
+            }
+        }
+    },
+    {
+        "hostname": "sw2",
+        "vlan": {
+            "99": {
+                "name": "mgmt"
+            },
+            "100": {
+                "name": "user_100"
+            },
+            "497": {
+                "name": "bvt_497"
+            }
+        },
+        "port": {
+            "GigabitEthernet0/0": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet0/1": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet0/2": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet0/3": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/0": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/1": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/2": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/3": {
+                "switchport": "no switchport",
+                "ip vrf forwarding": "MGMT",
+                "ip address": "192.168.57.4 255.255.255.240",
+                "negotiation": "auto",
+                "cdp enable": "no cdp enable"
+            },
+            "GigabitEthernet2/0": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet2/1": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet2/2": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet2/3": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "Vlan99": {
+                "ip address": "192.168.57.4 255.255.255.240"
+            }
+        }
+    },
+    {
+        "hostname": "r2",
+        "vlan": {
+            "99": {
+                "name": "mgmt"
+            },
+            "100": {
+                "name": "user_100"
+            },
+            "497": {
+                "name": "bvt_497"
+            }
+        },
+        "port": {
+            "GigabitEthernet0/0": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet0/1": {
+                "shutdown": "shutdown",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet0/2": {
+                "shutdown": "shutdown",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet0/3": {
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/0": {
+                "switchport trunk encapsulation": "dot1q",
+                "switchport mode": "trunk",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/1": {
+                "switchport trunk encapsulation": "dot1q",
+                "switchport mode": "trunk",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/2": {
+                "switchport trunk encapsulation": "dot1q",
+                "switchport mode": "trunk",
+                "shutdown": "shutdown",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet1/3": {
+                "switchport": "no switchport",
+                "ip vrf forwarding": "MGMT",
+                "ip address": "192.168.57.2 255.255.255.240",
+                "negotiation": "auto",
+                "cdp enable": "no cdp enable"
+            },
+            "GigabitEthernet2/0": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet2/1": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet2/2": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "GigabitEthernet2/3": {
+                "switchport access vlan": "100",
+                "switchport mode": "access",
+                "switchport voice vlan": "497",
+                "media-type": "rj45",
+                "negotiation": "auto"
+            },
+            "Vlan99": {
+                "ip address": "192.168.57.2 255.255.255.240"
+            },
+            "Vlan100": {
+                "ip vrf forwarding": "POL",
+                "ip address": "100.100.100.2 255.255.255.0",
+                "ip helper-address": [
+                    "3.3.3.3",
+                    "4.4.4.4"
+                ],
+                "standby": [
+                    "1 ip 100.100.100.254"
+                ]
+            },
+            "Vlan497": {
+                "ip vrf forwarding": "POL",
+                "ip address": "47.47.47.2 255.255.255.0",
+                "ip helper-address": [
+                    "5.5.5.5"
+                ],
+                "standby": [
+                    "1 ip 47.47.47.254"
+                ]
+            }
+        }
+    }
+]

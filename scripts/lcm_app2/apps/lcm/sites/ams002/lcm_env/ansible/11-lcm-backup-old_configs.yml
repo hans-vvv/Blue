@@ -1,0 +1,28 @@
+---
+- hosts: all
+  tasks:
+
+  - name: Get current directory
+    set_fact:
+      curr_dir: "{{ playbook_dir }}"
+
+  - name: Delete directory for backup configs
+    file:
+      state: absent
+      path: "{{curr_dir | replace('ansible', '')}}/old_configs"
+    delegate_to: localhost
+    run_once: true
+
+  - name: Create directory for backup configs
+    file:
+      state: directory
+      path: "{{curr_dir | replace('ansible', '')}}/old_configs"
+    delegate_to: localhost
+    run_once: true
+
+  - name: Backup configurations
+    ansible.netcommon.cli_config:
+      backup: yes
+      backup_options:
+        filename: "{{ inventory_hostname }}.cfg"
+        dir_path: ../old_configs

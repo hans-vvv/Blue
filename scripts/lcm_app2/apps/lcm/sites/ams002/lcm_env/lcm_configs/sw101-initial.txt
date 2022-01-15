@@ -1,0 +1,46 @@
+hostname sw101
+!
+service compress-config
+snmp-server location staging
+vlan 99
+ name OOB_192.168.57.0/28
+!
+vlan 100
+ name VRF_pol_USER_100.100.100.0/24
+!
+vlan 497
+ name VRF_pol_VOIP_47.47.47.0/24
+!
+interface Vlan99
+ ip address 192.168.57.3 255.255.255.240
+ description OOB_192.168.57.0/28
+!
+interface GigabitEthernet2/0
+ switchport access vlan 100
+ switchport voice vlan 497
+!
+interface GigabitEthernet2/1
+ switchport access vlan 100
+ switchport voice vlan 497
+!
+interface GigabitEthernet2/2
+ switchport access vlan 100
+ switchport voice vlan 497
+!
+interface GigabitEthernet2/3
+ switchport access vlan 100
+ switchport voice vlan 497
+!
+interface GigabitEthernet0/0
+ description r101 Gi0/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 99,100,497
+!
+interface GigabitEthernet0/1
+ description r102 Gi0/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 99,100,497
+!
+ip route 0.0.0.0 0.0.0.0 192.168.57.14

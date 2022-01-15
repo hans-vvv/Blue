@@ -1,0 +1,53 @@
+{% extends "layouts/_base.html" %}
+{% block content %}
+
+<h1>Welkom op de LCM app site.</h1>
+<br>
+<h3>Log in met uw ISN nummer.</h3>
+<br>
+
+<form method="post" action="/login/">
+    {{ form.csrf_token }}
+    <div>
+        {{ form.username.label(class_="test") }}
+        <div>
+            {{ form.username }}
+        </div>
+    </div>
+    <br>
+    <div>
+        {{ form.password.label }}
+        <div>
+            {{ form.password }}
+        </div>
+    </div>
+    {% if form.password.errors %}
+    <span class="error">
+        {% for error in form.password.errors %}
+        {{error}}
+        {% endfor %}
+    </span>
+    {% endif %}
+    <br>
+    <div>
+        {{ form.confirm.label }}
+        <div>
+            {{ form.confirm }}
+        </div>
+    </div>
+    <span class="error">
+        {% for error in form.confirm.errors %}
+        {{error}}
+        {% endfor %}
+    </span>
+    <br>
+    <div>
+        <button class="btn btn-info bg-steel" type="log in">OK</button>
+    </div>
+</form>
+
+<div>
+    <em>Geen account? </em><a href="/register">Neem contact met uw leidinggevende op!</a>
+</div>
+
+{% endblock %}

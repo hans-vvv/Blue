@@ -1,0 +1,21 @@
+{% extends "/layouts/_base.html" %}
+{% block content %}
+
+<h1>Welkom in het LCM hoofdmenu.</h1>
+<br>
+<br>
+<h3>Maak een keuze:</h3>
+
+<div>
+    <a href="{{ url_for('lcm.lcm_site_mgmt_main_menu') }}">Site management</a>
+</div>
+
+<div>
+    <a href="{{ url_for('lcm.lcm_prepare_site_main_menu') }}">Voorbereiden migratie van een site</a>
+</div>
+
+<div>
+    <a href="{{ url_for('lcm.lcm_migrate_site_main_menu') }}">Migratie van een site</a>
+</div>
+{% endblock %}
+

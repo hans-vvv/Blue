@@ -1,0 +1,28 @@
+{% extends "layouts/_base.html" %}
+{% block content %}
+
+<h1>Voeg een authorizatie toe aan een gebruiker.</h1>
+<br>
+
+<form method="post" action="/admin/add_user_auth/">
+    {{ form.csrf_token }}
+    <div>
+        {{ form.username.label }}
+        <div>
+            {{ form.username }}
+        </div>
+    </div>
+    <br>
+    <div>
+        {{ form.userrole.label }}
+        <div>
+            {{ form.userrole }}
+        </div>
+    </div>
+    <br>
+    <div>
+        <button class="btn btn-sm btn-success bg-steel" type="OK">OK</button>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,4 @@
+---
+- include: sub-lcm-create-local_inventory.yml
+- include: sub-lcm-create-initial_dynamic_inventory.yml
+- include: sub-lcm-create-dynamic_inventory.yml

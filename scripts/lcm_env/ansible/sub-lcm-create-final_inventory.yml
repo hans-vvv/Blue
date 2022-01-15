@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  tasks:
+
+  - name: Get current directory
+    set_fact:
+      curr_dir: "{{ playbook_dir }}"
+
+  - name: Create inventory file by calling LCM inventory script
+    command: chdir={{ curr_dir | replace('ansible', '') }} python3 create_inventory.py --final
+    run_once: true
+
+  - name: Copy created hostfile to hosts
+    copy:
+      src: ../ansible_inventory/hosts.final
+      dest: hosts
+
+  - meta: refresh_inventory

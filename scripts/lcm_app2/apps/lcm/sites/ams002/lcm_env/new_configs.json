@@ -1,0 +1,300 @@
+{
+    "r101": {
+        "port": {
+            "GigabitEthernet2/0": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "GigabitEthernet2/1": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "GigabitEthernet2/2": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "GigabitEthernet2/3": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "Vlan99": {
+                "ip address": "192.168.57.1 255.255.255.240",
+                "ip vrf forwarding": "global"
+            },
+            "Vlan100": {
+                "ip vrf forwarding": "pol",
+                "standby": [
+                    "1 ip 100.100.100.254",
+                    "1 priority 254"
+                ],
+                "ip address": "100.100.100.1 255.255.255.0"
+            },
+            "Vlan497": {
+                "ip vrf forwarding": "pol",
+                "standby": [
+                    "1 ip 47.47.47.254",
+                    "1 priority 254"
+                ],
+                "ip address": "47.47.47.1 255.255.255.0"
+            },
+            "GigabitEthernet0/2": {
+                "channel-group": "1 mode active",
+                "description": "r102 Gi0/2"
+            },
+            "GigabitEthernet0/3": {
+                "channel-group": "1 mode active",
+                "description": "r102 Gi0/3"
+            },
+            "Port-channel1": {
+                "switchport trunk encapsulation": "dot1q",
+                "switchport mode": "trunk",
+                "description": "r102"
+            },
+            "GigabitEthernet0/0": {
+                "switchport mode": "trunk",
+                "switchport trunk encapsulation": "dot1q",
+                "vlan_allow_list": [
+                    "99",
+                    "100",
+                    "497"
+                ],
+                "description": "sw101 Gi0/0"
+            },
+            "GigabitEthernet0/1": {
+                "switchport mode": "trunk",
+                "switchport trunk encapsulation": "dot1q",
+                "vlan_allow_list": [
+                    "99",
+                    "100",
+                    "497"
+                ],
+                "description": "sw102 Gi0/0"
+            }
+        },
+        "vlan": {
+            "99": {
+                "name": "OOB_192.168.57.0/28"
+            },
+            "100": {
+                "name": "VRF_pol_USER_100.100.100.0/24"
+            },
+            "497": {
+                "name": "VRF_pol_VOIP_47.47.47.0/24"
+            }
+        },
+        "static": {
+            "global": {
+                "72778f893e564c0e9c1f6f6eb1de92cd": "0.0.0.0 0.0.0.0 192.168.57.14"
+            }
+        }
+    },
+    "sw101": {
+        "port": {
+            "GigabitEthernet2/0": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "GigabitEthernet2/1": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "GigabitEthernet2/2": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "GigabitEthernet2/3": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "Vlan99": {
+                "ip address": "192.168.57.3 255.255.255.240",
+                "ip vrf forwarding": "global"
+            },
+            "GigabitEthernet0/0": {
+                "switchport trunk encapsulation": "dot1q",
+                "switchport mode": "trunk",
+                "vlan_allow_list": [
+                    "99",
+                    "100",
+                    "497"
+                ],
+                "description": "r101 Gi0/0"
+            },
+            "GigabitEthernet0/1": {
+                "switchport trunk encapsulation": "dot1q",
+                "switchport mode": "trunk",
+                "vlan_allow_list": [
+                    "99",
+                    "100",
+                    "497"
+                ],
+                "description": "r102 Gi0/0"
+            }
+        },
+        "vlan": {
+            "99": {
+                "name": "OOB_192.168.57.0/28"
+            },
+            "100": {
+                "name": "VRF_pol_USER_100.100.100.0/24"
+            },
+            "497": {
+                "name": "VRF_pol_VOIP_47.47.47.0/24"
+            }
+        },
+        "static": {
+            "global": {
+                "f6f4040daf65496f8f8258cbea64f0dd": "0.0.0.0 0.0.0.0 192.168.57.14"
+            }
+        }
+    },
+    "sw102": {
+        "port": {
+            "GigabitEthernet2/0": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "GigabitEthernet2/1": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "GigabitEthernet2/2": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "GigabitEthernet2/3": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "Vlan99": {
+                "ip address": "192.168.57.4 255.255.255.240",
+                "ip vrf forwarding": "global"
+            },
+            "GigabitEthernet0/0": {
+                "switchport trunk encapsulation": "dot1q",
+                "switchport mode": "trunk",
+                "vlan_allow_list": [
+                    "99",
+                    "100",
+                    "497"
+                ],
+                "description": "r101 Gi0/1"
+            },
+            "GigabitEthernet0/1": {
+                "switchport trunk encapsulation": "dot1q",
+                "switchport mode": "trunk",
+                "vlan_allow_list": [
+                    "99",
+                    "100",
+                    "497"
+                ],
+                "description": "r102 Gi0/1"
+            }
+        },
+        "vlan": {
+            "99": {
+                "name": "OOB_192.168.57.0/28"
+            },
+            "100": {
+                "name": "VRF_pol_USER_100.100.100.0/24"
+            },
+            "497": {
+                "name": "VRF_pol_VOIP_47.47.47.0/24"
+            }
+        },
+        "static": {
+            "global": {
+                "078d63ce38bb42329535873e2697d791": "0.0.0.0 0.0.0.0 192.168.57.14"
+            }
+        }
+    },
+    "r102": {
+        "port": {
+            "GigabitEthernet2/0": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "GigabitEthernet2/1": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "GigabitEthernet2/2": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "GigabitEthernet2/3": {
+                "switchport access vlan": "100",
+                "switchport voice vlan": "497"
+            },
+            "Vlan99": {
+                "ip address": "192.168.57.2 255.255.255.240",
+                "ip vrf forwarding": "global"
+            },
+            "Vlan100": {
+                "ip vrf forwarding": "pol",
+                "standby": [
+                    "1 ip 100.100.100.254",
+                    "1 priority 100"
+                ],
+                "ip address": "100.100.100.2 255.255.255.0"
+            },
+            "Vlan497": {
+                "ip vrf forwarding": "pol",
+                "standby": [
+                    "1 ip 47.47.47.254",
+                    "1 priority 100"
+                ],
+                "ip address": "47.47.47.2 255.255.255.0"
+            },
+            "GigabitEthernet0/2": {
+                "channel-group": "1 mode active",
+                "description": "r101 Gi0/2"
+            },
+            "GigabitEthernet0/3": {
+                "channel-group": "1 mode active",
+                "description": "r101 Gi0/3"
+            },
+            "Port-channel1": {
+                "switchport trunk encapsulation": "dot1q",
+                "switchport mode": "trunk",
+                "description": "r101"
+            },
+            "GigabitEthernet0/0": {
+                "switchport mode": "trunk",
+                "switchport trunk encapsulation": "dot1q",
+                "vlan_allow_list": [
+                    "99",
+                    "100",
+                    "497"
+                ],
+                "description": "sw101 Gi0/1"
+            },
+            "GigabitEthernet0/1": {
+                "switchport mode": "trunk",
+                "switchport trunk encapsulation": "dot1q",
+                "vlan_allow_list": [
+                    "99",
+                    "100",
+                    "497"
+                ],
+                "description": "sw102 Gi0/1"
+            }
+        },
+        "vlan": {
+            "99": {
+                "name": "OOB_192.168.57.0/28"
+            },
+            "100": {
+                "name": "VRF_pol_USER_100.100.100.0/24"
+            },
+            "497": {
+                "name": "VRF_pol_VOIP_47.47.47.0/24"
+            }
+        },
+        "static": {
+            "global": {
+                "69f662afafc1405abff49c5c1f3c79ac": "0.0.0.0 0.0.0.0 192.168.57.14"
+            }
+        }
+    }
+}

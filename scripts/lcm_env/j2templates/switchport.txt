@@ -1,0 +1,26 @@
+interface {{interface}}
+{% if description %}
+ description {{description}}
+{% endif %}
+{% if switchport_trunk_encapsulation %}
+ switchport trunk encapsulation dot1q
+{% endif %}
+{% if switchport_mode %}
+ switchport mode {{switchport_mode}}
+{% endif %}
+{% if switchport_access_vlan %}
+ switchport access vlan {{switchport_access_vlan}}
+{% endif %}
+{% if switchport_voice_vlan %}
+ switchport voice vlan {{switchport_voice_vlan}}
+{% endif %}
+{% if source_template %}
+ source template {{source_template}}
+{% endif %}
+{% if vlan_allow_list_cs %}
+ switchport trunk allowed vlan {{vlan_allow_list_cs}}
+{% endif %}
+{% if channel_group %}
+ channel-group {{channel_group}}
+{% endif %}
+!

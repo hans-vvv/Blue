@@ -1,0 +1,21 @@
+{% extends "layouts/_base.html" %}
+{% block content %}
+
+<h1>Voeg een Site toe.</h1>
+<br>
+
+<form method="post" action="/lcm/site_mgmt/add_site">
+    {{ form.csrf_token }}
+    <div>
+        {{ form.sitename.label }}
+        <div>
+            {{ form.sitename }}
+        </div>
+    </div>
+    <br>
+    <div>
+        <button class="btn btn-sm btn-success bg-steel" type="log in">OK</button>
+    </div>
+</form>
+{% endblock %}
+

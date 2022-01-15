@@ -1,0 +1,13 @@
+{% extends "layouts/_base.html" %}
+{% block content %}
+
+<h1>Script resultaat</h1>
+<br>
+    <textarea class="scrollable">
+    {{ text }}
+    </textarea>
+<div>
+	<a href="{{ url_for(page) }}" class="btn btn-info bg-steel" role="button">Ga verder</a>
+</div>
+
+{% endblock %}

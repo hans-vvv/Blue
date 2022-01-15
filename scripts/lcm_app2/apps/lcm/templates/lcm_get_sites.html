@@ -1,0 +1,10 @@
+{% extends "layouts/_base.html" %}
+{% block content %}
+
+{% from "layouts/_create_table.html" import create_table %}
+<h1>Overzicht van alle Sites</h1>
+<br>
+
+{{ create_table(result) }}
+{% endblock %}
+

@@ -1,0 +1,22 @@
+---
+- include: sub-lcm-create-final_inventory.yml
+- include: sub-lcm-check-aaa_configs.yml
+-
+   name: test
+   hosts: final
+   tasks:
+
+     - name: Save hostname into variable
+       set_fact:
+         hostname: "{{ inventory_hostname }}"
+
+     - name: remove local user
+       ios_user:
+         name: cisco
+         state: absent
+       when: hostname == output.ansible_facts.ansible_net_hostname
+
+     - name: push final config
+       cisco.ios.ios_config:
+         src: "../lcm_configs_fixed/{{inventory_hostname}}-final.txt"
+       when: hostname == output.ansible_facts.ansible_net_hostname

@@ -1,0 +1,30 @@
+{% extends "/layouts/_base.html" %}
+{% block content %}
+
+<h1>Migreer een site</h1>
+<br>
+<h3>Maak een keuze:</h3>
+
+<div>
+    <a href="{{ url_for('lcm.lcm_save_state_info') }}" class="patient">Sla netwerktabellen van de huidige site op</a>
+</div>
+
+<div>
+    <a href="{{ url_for('lcm.lcm_dynamic_inventory') }}" class="patient">Creeer een dynamische Ansible inventory</a>
+</div>
+
+<div>
+    <a href="{{ url_for('lcm.lcm_push_initial_cfg') }}" class="patient">Push de initiele configuraties</a>
+</div>
+
+<div>
+    <a href="{{ url_for('lcm.lcm_push_aaa_cfg') }}" class="patient">Push de AAA configuraties</a>
+</div>
+
+<div>
+    <a href="{{ url_for('lcm.lcm_push_final_cfg') }}" class="patient">Push de definitieve configuraties</a>
+</div>
+
+
+{% endblock %}
+

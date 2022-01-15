@@ -1,0 +1,4 @@
+hostname {{hostname}}
+!
+service compress-config
+snmp-server location staging
