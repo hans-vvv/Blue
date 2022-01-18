@@ -1,2 +1,0 @@
-ansible_user: production
-ansible_ssh_pass: production

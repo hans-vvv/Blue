@@ -1,5 +1,0 @@
-vlan {{vlan_id}}
-{% if vlan_name %}
- name {{vlan_name}}
-{% endif %}
-!

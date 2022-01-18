@@ -1,8 +1,0 @@
-template {{name}}
- switchport mode access
- swichport access vlan {{data_vlan}}
-{% if voice_vlan %}
- switchport voice vlan {{voice_vlan}}
-{% endif %}
- load-interval 30
-!

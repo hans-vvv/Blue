@@ -1,5 +1,0 @@
-{% if vrf == 'global' %}
-ip route {{route_info}}
-{%- else %}
-ip route vrf {{vrf}} {{route_info}}
-{%- endif %}

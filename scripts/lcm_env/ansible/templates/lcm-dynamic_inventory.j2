@@ -1,7 +1,0 @@
-{% if staging_config_state == "new_switch" %}
-[pre_staging]
-{{discovered_hostname}} ansible_host={{mgmt_ip}}
-{% elif staging_config_state == "service compress-config" %}
-[staging]
-{{discovered_hostname}} ansible_host={{mgmt_ip}}
-{% endif %} 
