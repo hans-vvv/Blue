@@ -1,0 +1,43 @@
+from netmiko import ConnectHandler
+
+
+class NetmikoConnector:
+    """ Class for device connectivity with IOS switches"""
+
+    def __init__(self, credentials):
+        self.credentials = credentials
+
+    def execute_cmds_on_host(self, host, commands):
+
+        output, result = '', None
+        device = {'username': credentials['username'],
+                  'password': credentials['password'],
+                  'device_type': 'cisco_ios',
+                  'host': host
+        }
+        try:
+            with ConnectHandler(**device) as session:
+                for command in commands:
+                    result = session.send_command(command)
+                    output += result
+                    print('Succesfully executed one command')
+        except Exception as e:
+            output += '\nERROR: ' + str(e)
+            raise
+        return result
+
+    def backup_configs(self, hosts):
+
+        for host in hosts:
+            with open(host + '.cfg', 'w') as f:
+                backup_cfg = self.execute_cmds_on_host(host, ['show runn'])
+                print(backup_cfg, file=f)
+
+
+if __name__ == "__main__":
+    credentials = {'username': 'production', 'password': 'production'}
+    nodehandler = NetmikoConnector(credentials)
+    hosts = ['192.168.57.3']
+    commands = ['show run']
+
+    nodehandler.backup_configs(hosts)
