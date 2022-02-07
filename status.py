@@ -1,25 +1,32 @@
-import os
-import json
-from glob import glob
-
-curr_dir = os.getcwd()
-status_dir = curr_dir + "/status"
-
-os.chdir(status_dir)
-
-hostnamefiles = [filename for filename in glob('*.txt')]
-
-try:
-    with open('hosts_done.json', 'r') as f:
-        hosts_done = json.load(f)
-except:
-    hosts_done = []
-
-for filename in hostnamefiles:
-    with open(filename, 'r') as lines:
-        for line in lines:
-            hosts_done.append(line)
-    os.remove(filename)
-
-with open('hosts_done.json', 'w') as f:
-    json.dump(hosts_done, f, indent=4)
+    def commit_worker(self):
+        """ Send given configuration commands to device """
+        app.status_bar.progress_start()
+        output, result = '', False
+        # Connect to device
+        device = {**AuthDialog.resultdict, 'device_type': self.tree.parser.name,
+                  'secret': AuthDialog.resultdict['password'], 'ip': self._resolve()}
+        try:
+            with ConnectHandler(**device) as session:
+                # Prompt should match hostname
+                output += session.find_prompt()
+                if not re.search(self.hostname + '[#>]', output):
+                    raise ValueError('Hostname does not match')
+                # Enter privileged exec
+                if self.tree.parser.name != 'cisco_xr':
+                    output += self._enable(session)
+                # Configure device
+                output += session.send_config_set(self.enqueued)
+                if re.search('% Invalid input|% Incomplete command', output):
+                    raise ValueError('One or more commands not recognized')
+                # Apply/save configuration
+                if self.tree.parser.name == 'cisco_xr':
+                    output += session.commit(comment=self.comment)
+                else:
+                    output += session.save_config()
+                result = True
+        except Exception as e:
+            output += '\nERROR: ' + str(e)
+        app.con_tab.write(output.strip('\n').replace('\n\n', '\n'), self.fqdn)
+        app.con_tab.dump('console.txt')
+        app.status_bar.progress_stop()
+        return result
